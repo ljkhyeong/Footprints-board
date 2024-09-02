@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.PostMapper">
+
+    <insert id="insertPost" parameterType="ljk.personal.board.model.Post" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO TB_POST (user_id, title, content, status, created_at)
+        VALUES (#{userId}, #{title}, #{content}, #{status}, #{createdAt})
+    </insert>
+
+
+    <select id="selectPostById" parameterType="long">
+        SELECT * FROM TB_POST WHERE id = #{id}
+    </select>
+
+    <select id="selectAllPosts">
+        SELECT * FROM TB_POST
+    </select>
+
+    <update id="updatePost" parameterType="ljk.personal.board.model.Post">
+        UPDATE TB_POST SET user_id=#{userId}, title=#{title}, content=#{content}, status=#{status}, created_at=#{createdAt} WHERE id = #{id}
+    </update>
+
+    <delete id="deletePostById" parameterType="long">
+        DELETE FROM TB_POST WHERE id = #{id}
+    </delete>
+</mapper>
